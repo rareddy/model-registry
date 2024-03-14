@@ -4,21 +4,24 @@ metadata:
   name: model-registry
 spec:
   gateways:
-  - kubeflow-gateway
+    - kubeflow-gateway
   hosts:
-  - '*'
-  tcp:
+    - model-registry-service.apps.rosa.rareddy-rosa2.h9lo.p3.openshiftapps.com
+    - model-registry-service
+  http:
   - match:
-    - port: 8080
+    - uri:
+        extract: /api
     route:
     - destination:
-        host: model-registry-service.kubeflow.svc.cluster.local
+        host: model-registry-service
         port:
           number: 8080
-  - match:
-      - port: 9090
-    route:
-      - destination:
-          host: model-registry-service.kubeflow.svc.cluster.local
-          port:
-            number: 9090
+ # tcp:
+ # - match:
+ #     - port: 9090
+ #   route:
+ #     - destination:
+ #         host: model-registry-service
+ #         port:
+ #           number: 9090

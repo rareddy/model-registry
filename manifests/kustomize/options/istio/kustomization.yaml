@@ -4,5 +4,7 @@ namespace: kubeflow
 
 resources:
 - istio-authorization-policy.yaml
+- istio-authorization-policy-db.yaml
 - destination-rule.yaml
 - virtual-service.yaml
+- gateway.yaml
