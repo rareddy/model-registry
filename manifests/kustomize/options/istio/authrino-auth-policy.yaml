@@ -1,0 +1,39 @@
+apiVersion: authorino.kuadrant.io/v1beta2
+kind: AuthConfig
+metadata:
+  annotations:
+  labels:
+    security.opendatahub.io/authorization-group: default
+  name: model-registry-service
+  namespace: kubeflow
+spec:
+  authentication:
+    cluster-users:
+      credentials:
+        authorizationHeader: {}
+      kubernetesTokenReview:
+        audiences:
+        - https://rh-oidc.s3.us-east-1.amazonaws.com/23c734st3pn7l167mq97d0ot8848lgrl
+  authorization:
+    k8s-rbac:
+      kubernetesSubjectAccessReview:
+        groups:
+        - model-registry-users
+        resourceAttributes:
+          group:
+            value: ""
+          name:
+            value: model-registry-service
+          namespace:
+            value: kubeflow
+          resource:
+            value: services
+          subresource:
+            value: ""
+          verb:
+            value: get
+        user:
+          selector: auth.identity.user.username
+  hosts:
+  - model-registry-service.apps.rosa.rareddy-rosa2.h9lo.p3.openshiftapps.com
+  - model-registry-service.kubeflow.svc.cluster.local

@@ -3,8 +3,11 @@ kind: Kustomization
 namespace: kubeflow
 
 resources:
-- istio-authorization-policy.yaml
+- istio-custom-authorization-policy.yaml
 - istio-authorization-policy-db.yaml
 - destination-rule.yaml
 - virtual-service.yaml
 - gateway.yaml
+- authrino-auth-policy.yaml
+- role.yaml
+- role-binding.yaml
